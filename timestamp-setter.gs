@@ -14,7 +14,7 @@ function setTimestamp() {
     }
   }
 
-  var CurrentCell = currentSheet.getRange('D' + lastNonEmptyRowIndexC);
+  var currentCell = currentSheet.getRange('D' + lastNonEmptyRowIndexC);
   if (currentCell.getValues() != '') {
     currentCell = currentSheet.getRange('C' + (lastNonEmptyRowIndexC + 1));
   }
