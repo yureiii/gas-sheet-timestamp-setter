@@ -6,7 +6,7 @@
 
 
 ## Usage
-Google スプレットシート上でボタンを作成する．`timestamp-setter.gs` にある setTimestamp 関数をボタンに割り当てる．ボタンを押すことで実行．  
+Google スプレットシート上でボタンを作成する．[timestamp-setter.gs](./timestamp-setter.gs) にある setTimestamp 関数をボタンに割り当てる．ボタンを押すことで実行．  
 
 ## 実行例
 ||A|B|C|D|E|
