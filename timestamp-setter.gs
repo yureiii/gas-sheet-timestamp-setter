@@ -8,7 +8,7 @@ function setTimestamp(column, targetRow) {
     return;
   }
   const currentSheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  let currentCell = range.getValues(targetColumn + targetRow);
+  const currentCell = currentSheet.getRange(targetColumn + targetRow);
 
 
   // タイムスタンプ取得
