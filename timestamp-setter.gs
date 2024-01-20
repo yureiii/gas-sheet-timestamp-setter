@@ -1,24 +1,15 @@
-function setTimestamp() {
-  // 挿入するセル探索
-  // C1, D1, C2, D2, C3, D3 の順番に挿入する
+function setTimestamp(column, targetRow) {
+  let targetColumn;
+  if (column === 2) {
+    targetColumn = 'C';
+  } else if (column === 6) {
+    targetColumn = 'D';
+  } else {
+    return;
+  }
   const currentSheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const range = currentSheet.getRange('C:C');
-  const values = range.getValues();
-  let lastNonEmptyRowIndexC = -1;
+  let currentCell = range.getValues(targetColumn + targetRow);
 
-  // C 列で最初の空のセルを探索
-  for (let i = 0; i < values.length; i++) {
-    if (values[i][0] == '') {
-      lastNonEmptyRowIndexC = i;
-      break;
-    }
-  }
-
-  let currentCell = currentSheet.getRange('D' + lastNonEmptyRowIndexC);
-  if (currentCell.getValues() != '') {
-    currentCell = currentSheet.getRange('C' + (lastNonEmptyRowIndexC + 1));
-  }
-  
 
   // タイムスタンプ取得
   const now = new Date();
@@ -32,3 +23,15 @@ function setTimestamp() {
   currentCell.setValue(hours + ":" + minutes + ":" + seconds);
 }
 
+
+
+function onEdit(e) {
+  const range = e.range;
+  const editColumn = range.getColumn();
+  const editRow = range.getRow();
+
+  // B 列 か F 列が編集された場合に実行
+  if (editColumn === 2 || editColumn === 6) {
+    setTimestamp(editColumn, editRow);
+  }
+}
